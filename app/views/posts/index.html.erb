@@ -8,17 +8,10 @@
       <div class="container">
         
         <!-- Form goes here -->
-  <%= form_for @new_post do |f| %>
+        <%= form_for @new_post do |f| %>
           <%= f.text_field :item, placeholder: "What do you want?" %>
           <%= f.button "post", class: "btn" %>
         <% end %>
-
-<!-- REFERENCE 
-        <form class="form">
-          <input id="comment" type="text" placeholder="share your thoughts">
-          <button type="submit" class="btn">post</button>
-        </form>
-        -->
 
         <ul class="comments">
           <% @all_posts.each do |p| %>
@@ -28,5 +21,3 @@
 
       </div>
     </div>
-
-  <!-- FOR EXAMPLE -->
