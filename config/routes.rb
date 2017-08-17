@@ -3,4 +3,7 @@ Rails.application.routes.draw do
   resources :posts
   get "/posts" => "posts#index"
   root "posts#index"
+  delete "/posts" => "posts#destroy"
+  put "/posts" => "posts#update"
+  put "/posts" => "posts#downgrade"
 end

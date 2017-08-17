@@ -7,15 +7,24 @@
     <div class="main">
       <div class="container">
         
-        <!-- Form goes here -->
+<!-- POST FORM-->
+
         <%= form_for @new_post do |f| %>
           <%= f.text_field :item, placeholder: "What do you want?" %>
           <%= f.button "post", class: "btn" %>
         <% end %>
 
+<!-- LIST ALL POSTS -->
+
         <ul class="comments">
           <% @all_posts.each do |p| %>
           <li><%= p.item %></li>
+          <li><%= p.rank %></li>
+          <li><%= link_to "Rank", post_path(p), class: "btn", method: :put %>
+          <%= link_to "Nope", post_path(p), class: "btn", method: :downgrade %>
+          <%= link_to "Delete", post_path(p), class: "btn",
+                         :data => {:confirm => "You sure?",
+                                   :method => "delete"} %></li>
           <% end %>
         </ul>
 
