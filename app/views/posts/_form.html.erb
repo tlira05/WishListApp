@@ -1,0 +1,13 @@
+<% action = @post.persisted? ? post_url(@post) : posts_url %>
+<% method = @post.persisted? ? :patch : :post %>
+<% button = @post.persisted? ? "Update Post" : "New Post" %>
+<% rank = @post.persisted? ? "text" : "hidden" %>
+
+<form class="" action="<%= action %>" method="post">
+  <%= auth_token %>
+  <input type="hidden" name="_method" value="<%= method %>">
+  <input type="text" name="post[item]" value="<%= @post.item %>">
+  <input type="<%= rank %>" name="post[rank]" value="<%= @post.rank %>">
+
+  <button><%= button %></button>
+</form>
