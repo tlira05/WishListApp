@@ -1,32 +1,45 @@
-    <div class="header">
+    <div class="jumbotron jumbotron-fluid">
       <div class="container">
-        <h1>Wish List</h1>
+        <h1 class="display-3">What are you going to get for christmas?</h1>
       </div>
     </div>
 
     <div class="main">
       <div class="container">
+        <div class="row">
+          <div class="w-100"></div>
+            
         
-<!-- POST FORM-->
+<!-- POST FORM -->
+            <%= link_to "+", {:action => "new"}, class: "add_btn", action: "new" %>
+          
+        </div>
 
-        <%= form_for @new_post do |f| %>
-          <%= f.text_field :item, placeholder: "What do you want?" %>
-          <%= f.button "post", class: "btn" %>
-        <% end %>
 
 <!-- LIST ALL POSTS -->
-
-        <ul class="comments">
+        <div class="row">
+          <h3>Your list:</h3>
           <% @all_posts.each do |p| %>
-          <li><%= p.item %></li>
-          <li><%= p.rank %></li>
-          <li><%= link_to "Rank", post_path(p), class: "btn", method: :put %>
-          <%= link_to "Nope", post_path(p), class: "btn", method: :downgrade %>
-          <%= link_to "Delete", post_path(p), class: "btn",
-                         :data => {:confirm => "You sure?",
-                                   :method => "delete"} %></li>
+          <div class="w-100">
+          <div class="card">
+            <div class="card-header">Probability: <%= p.rank %></div>
+            <div class="card-body"> 
+              <h3 class="card-text"><%= p.item %></h3>
+              <p class="card-text"><%= p.description %><p>
+              <a href="<%= p.link %>" target="_blank">Click here to find out where to buy!</a>
+              <br />
+              <br />
+              <%= link_to "Edit", edit_post_url(p), class: "btn btn-outline-info" %>
+              <div class="options">
+                <hr/>
+                <h3>What do you know about this?</h3>
+                <div class="btn btn-outline-success">Someone Got it!</div>
+                <div class="btn btn-outline-warning">I think someone's getting it.</div>
+                <div class="btn btn-outline-secondary">I'm not sure</div>
+              </div>
+            </div>
+          </div>
           <% end %>
-        </ul>
-
+        </div>
       </div>
     </div>

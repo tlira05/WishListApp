@@ -5,11 +5,18 @@ padding:0;
 }
 
 h1 {
-border-left:2px solid #00f28f;
 font-size:48px;
 font-weight:400;
 padding-left:20px;
-margin:0;
+margin:;
+}
+
+h2 {
+	padding: 15px;
+}
+
+h3 {
+	font-size: 63px;
 }
 
 .header {
@@ -21,16 +28,44 @@ color:#a9a9a9;
 }
 
 .container {
-margin-right:auto;
-margin-left:auto;
 padding-left:15px;
 padding-right:15px;
+}
+
+.jumbotron {
+	color: white;
+	text-align: center;
+	height: 400px;
+	background-image: url("christmas.jpg");
+}
+
+.prob {
+	background-color: green;
+	color:white;
+	text-align: center;
+	width: 200px;
+	height: 70px;
+	display: inline-block;
+}
+
+.content {
+	display: inline-block;
 }
 
 form {
 margin:0 0 100px;
 }
 
+.add_btn {
+	padding: 10px;
+	color: white;
+	font-size: 36px;
+	text-decoration: none;
+	background-color: #00f28f;
+	width: 100%;
+	text-align: center;
+	margin: auto;
+}
 
 form input[type=text] {
 background:#f0f0f0;
@@ -56,6 +91,7 @@ border:none;
 color:#00f28f;
 cursor:pointer;
 font-size:36px;
+text-decoration: none;
 transition:background 2s, color 1s;
 padding:20px 24px;
 }
@@ -63,6 +99,7 @@ padding:20px 24px;
 button.btn:hover,.btn:hover {
 background:#00f28f;
 color:#fff;
+text-decoration: none;
 transition:background 2s, color 1s;
 }
 

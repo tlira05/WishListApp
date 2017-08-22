@@ -13,8 +13,11 @@
 ActiveRecord::Schema.define(version: 20170816015146) do
 
   create_table "posts", force: :cascade do |t|
-    t.string "item"
-    t.integer "rank"
+    t.string "item", null: false
+    t.integer "rank", default: 0
+    t.text "description"
+    t.string "link", default: "", null: false
+    t.string "image", default: "default.png"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

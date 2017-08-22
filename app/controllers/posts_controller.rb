@@ -5,23 +5,39 @@ class PostsController < ApplicationController
     @all_posts = Post.order(rank: :desc).all
   end
   
+  def new
+    @new_post = Post.new
+  end
+
+  def show
+    @post = Post.find(params[:id])
+  end
+
   def create
     @new_post = Post.new(post_params)
-        	if @new_post.save
+      if @new_post.save
         redirect_to '/posts'
-        else
-        	render 'new'
+      else
+        render 'new'
       end
+  end
+
+  def edit
+    @post = Post.find(params[:id])
   end
 
   def update
     @post = Post.find(params[:id])
-    @post.increment!(:rank)
+    if @post.update_attributes(post_params)
+    
+        redirect_to '/posts'
+      else
+        render 'edit'
+      end
   end
-  
-  def downgrade
+
+  def delete
     @post = Post.find(params[:id])
-    @post.decrement!(:rank)
   end
 
   def destroy
@@ -30,10 +46,10 @@ class PostsController < ApplicationController
     redirect_to '/posts'
   end
 
-
-  private
+private 
   def post_params
-    params.require(:post).permit(:item)
+  params.require(:post).permit(:item, :description, :link)
   end
+
 
 end

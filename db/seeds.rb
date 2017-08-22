@@ -5,6 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-p1 = Post.create(item: "Xbox One X", rank: 3)
-p2 = Post.create(item: "Nintendo", rank: 2)
-p3 = Post.create(item: "Playstation Pro", rank: 1)
+5.times do |d|
+	d.create(item: "Xbox One X", description: "I really really want to have this thing so I can play the dopest games in all of 2017", link: "www.tlira.com")
+end

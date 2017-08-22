@@ -1,0 +1,19 @@
+
+<div class="main">
+    <div class="container">
+    	<%= link_to "Back", {:action => "index"}, class: "btn btn-outline-dark"%>
+    	<h2>What do you really really want of Christmas?</h2>
+    	<img src="https://media.giphy.com/media/MhVdjqeKACHmM/giphy.gif"/>
+		<%= form_for @new_post do |f| %>
+		<h2>What do you want?</h2>
+          <%= f.text_field :item, placeholder: "Name your gift" %>
+        <h2>Tell me why I should get it for you?</h2>
+          <%= f.text_field :description, placeholder: "Explain Yourself..." %>
+        <h2>Give me the link?</h2>
+			<%= f.text_field :link, placeholder: "HTML" %>
+			<br>
+			<br>
+		<%= f.button "Update", class: "btn" %>
+        <% end %>
+    </div>
+</div>
