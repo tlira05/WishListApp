@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170816015146) do
+ActiveRecord::Schema.define(version: 20170824025407) do
 
   create_table "posts", force: :cascade do |t|
     t.string "item", null: false
@@ -18,6 +18,14 @@ ActiveRecord::Schema.define(version: 20170816015146) do
     t.text "description"
     t.string "link", default: "", null: false
     t.string "image", default: "default.png"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

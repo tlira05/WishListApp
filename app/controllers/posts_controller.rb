@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
 	
+  before_action :require_user, only: [:index]
+
   def index
     @new_post = Post.new
     @all_posts = Post.order(rank: :desc).all
@@ -15,7 +17,7 @@ class PostsController < ApplicationController
 
   def create
     @new_post = Post.new(post_params)
-      if @new_post.save
+      if @new_post.save        
         redirect_to '/posts'
       else
         render 'new'
@@ -28,8 +30,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    if @post.update_attributes(post_params)
-    
+    if @post.update_attributes(post_params)    
         redirect_to '/posts'
       else
         render 'edit'
@@ -43,12 +44,13 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
+    flash[:action] = "Your gift was Deleted."
     redirect_to '/posts'
   end
 
 private 
   def post_params
-  params.require(:post).permit(:item, :description, :link)
+    params.require(:post).permit(:item, :description, :link, :rank)
   end
 
 

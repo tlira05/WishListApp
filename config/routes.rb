@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :posts
-  #get "/posts" => "posts#index"
   root "posts#index"
-  #delete "/posts" => "posts#destroy"
-  #put "/posts" => "posts#update"
+  resources :posts
+
+  #SIGN UP AND USER ROUTES
+  get 'signup' => 'users#new'
+  resources :users
+
+  #LOGIN IN AND OUT ROUTES
+  get 'login' => 'sessions#new'
+  post 'login' => 'sessions#create'
+  delete 'logout' => 'sessions#destroy'
+
 end

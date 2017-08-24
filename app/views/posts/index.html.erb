@@ -1,3 +1,10 @@
+<% if !flash[:notice].blank? %>
+  <div class="notice">
+    <%= flash[:notice] %>
+  </div>
+  <% end %>
+
+
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
         <h1 class="display-3">What are you going to get for christmas?</h1>
@@ -22,7 +29,18 @@
           <% @all_posts.each do |p| %>
           <div class="w-100">
           <div class="card">
-            <div class="card-header">Probability: <%= p.rank %></div>
+
+<!-- PROBABILITY DISPLAY -->
+
+            <% if p.rank >= 3 %>
+            <div class="card-header">Probability: Very Likely</div>
+            <% elsif p.rank >= 1 %>
+            <div class="card-header">Probability: Maybe</div>
+            <% else %>
+            <div class="card-header">Probability: We don't know yet</div>
+            <% end %>
+
+
             <div class="card-body"> 
               <h3 class="card-text"><%= p.item %></h3>
               <p class="card-text"><%= p.description %><p>
@@ -33,9 +51,29 @@
               <div class="options">
                 <hr/>
                 <h3>What do you know about this?</h3>
-                <div class="btn btn-outline-success">Someone Got it!</div>
-                <div class="btn btn-outline-warning">I think someone's getting it.</div>
-                <div class="btn btn-outline-secondary">I'm not sure</div>
+
+<!-- SOMEONE GOT IT -->
+
+                <% if p.rank >= 3 %>
+                <%= link_to "Someone Got it", post_url(p, "post[rank]" => p.rank + 3), method: "put", class: "btn btn-success", remote: "true"%>
+                <% else %>
+                <%= link_to "Someone Got it", post_url(p, "post[rank]" => p.rank + 3), method: "put", class: "btn btn-outline-success", remote: "true"%>
+                <% end %>
+
+<!-- SOMEONE MIGHT GET IT -->
+                <% if p.rank < 3 && p.rank > 0 %>
+                <%= link_to "Someone might get it", post_url(p, "post[rank]" => p.rank + 1), method: "put", class: "btn btn-warning", remote: "true"%>
+                <% else %>
+                <%= link_to "Someone might get it", post_url(p, "post[rank]" => p.rank + 1), method: "put", class: "btn btn-outline-warning", remote: "true"%>
+                <% end %>
+
+<!-- NO ONE KNOWS -->
+                <% if p.rank == 0 %>
+                <%= link_to "I'm not sure", post_url(p, "post[rank]" => p.rank + 0), method: "put", class: "btn btn-secondary", remote: "true"%>
+                <% else %>
+                <%= link_to "I'm not sure", post_url(p, "post[rank]" => p.rank + 0), method: "put", class: "btn btn-outline-secondary", remote: "true"%>
+                <% end %>
+
               </div>
             </div>
           </div>
